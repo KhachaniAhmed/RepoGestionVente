@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<h:panelGroup layout="block" class="modal fade" id="exampleModal"
+			tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<h:panelGroup layout="block" class="modal-dialog" role="document">
+				<h:panelGroup layout="block" class="modal-content">
+					<h:panelGroup layout="block" class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ready to
+							Leave?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<h:panelGroup aria-hidden="true">×</h:panelGroup>
+						</button>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="modal-body">Select "Logout" below if you are ready to end your current session.</h:panelGroup>
+					<h:panelGroup layout="block" class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Cancel</button>
+						<h:link value="Logout" outcome="login" class="btn btn-primary" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGroup>
+		</ui:composition>

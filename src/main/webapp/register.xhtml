@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+	<link href="vendor/font-awesome/css/font-awesome.min.css"
+		rel="stylesheet" type="text/css" />
+
+	<link href="css/sb-admin.css" rel="stylesheet" />
+	<title>Register</title>
+
+
+</h:head>
+
+<h:body class="bg-dark">
+	<p:tooltip />
+
+	<h:form>
+		<p:messages id="messages" showDetail="true" closable="true" class="ui-size"/>
+
+	</h:form>
+	<style type="text/css">
+	.ui-size{
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	
+	}
+	
+	
+	</style>
+	<h:panelGroup layout="block" class="container">
+		<h:panelGroup layout="block" class="card card-login mx-auto mt-5">
+			<h:panelGroup layout="block" class="card-header">Register</h:panelGroup>
+			<h:panelGroup layout="block" class="card-body">
+				<h:form>
+					<h:panelGroup layout="block" class="form-group">
+						<h:outputLabel for="nom">Nom</h:outputLabel>
+						<h:inputText class="form-control" id="nom" required="true"
+							requiredMessage="Entrer Votre Nom" type="password"
+							pt:placeholder="Nom" value="#{userFacade.nom}" />
+						<h:message for="nom" style="color:red;margin:8px;" />
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="form-group">
+						<h:outputLabel for="prenom">Prenom</h:outputLabel>
+						<h:inputText class="form-control" id="prenom" required="true"
+							requiredMessage="Entrer Votre prenom" type="password"
+							pt:placeholder="Prenom" value="#{userFacade.prenom}" />
+						<h:message for="prenom" style="color:red;margin:8px;" />
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="form-group">
+						<h:outputLabel for="exampleInputEmail1">UserName</h:outputLabel>
+						<h:inputText class="form-control" id="exampleInputEmail1"
+							type="email" aria-describedby="emailHelp"
+							pt:placeholder="UserName" value="#{userFacade.username}"
+							required="true" requiredMessage="Entrer Votre userName" />
+						<h:message for="exampleInputEmail1" style="color:red;margin:8px;" />
+
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="form-group">
+						<h:outputLabel for="exampleInputPassword1">Password</h:outputLabel>
+						<h:inputSecret class="form-control" id="exampleInputPassword1"
+							required="true" requiredMessage="Entrer Votre password"
+							type="password" pt:placeholder="Password"
+							value="#{userFacade.password}" />
+						<h:message for="exampleInputPassword1"
+							style="color:red;margin:8px;" />
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="form-group">
+						<h:outputLabel for="rpass">Repeat Password</h:outputLabel>
+						<h:inputSecret class="form-control" id="rpass" required="true"
+							requiredMessage="confirme Votre password" type="password"
+							pt:placeholder="confirmer" value="#{userFacade.rpassword}" />
+						<h:message for="rpass" style="color:red;margin:8px;" />
+					</h:panelGroup>
+
+
+					<h:commandButton class="btn btn-primary btn-block" value="Remember"
+						action="#{userFacade.singin}" />
+					<h:link class="btn btn-danger btn-block" value="cancel" outcome="login"/>
+				</h:form>
+
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+</h:body>
+
+</html>

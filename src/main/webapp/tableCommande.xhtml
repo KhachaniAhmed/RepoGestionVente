@@ -1,0 +1,264 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<a class="btn btn-primary btn-block" data-toggle="modal"
+		style="color: white;" data-target="#myModal3"><i
+		class="fa fa-fw fa-plus"></i>
+	<h:panelGroup class="nav-link-text">Ajouter commande</h:panelGroup></a>
+
+<br/>
+	<h:form id="formTable">
+
+
+		<h:panelGroup layout="block" class="card mb-3">
+			<h:panelGroup layout="block" class="card-header">
+				<i class="fa fa-table"></i> List des Commandes
+		</h:panelGroup>
+
+
+
+			<h:panelGroup layout="block" class="card-body">
+
+				<h:panelGroup layout="block" class="table-responsive">
+
+
+					<h:dataTable var="a" value="#{commandeFacade.getAllCommandes()}"
+						class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="0">
+
+						<h:column>
+							<f:facet name="header">Code Commande</f:facet>
+
+							<h:outputText value="#{a.codecmd}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nom Client </f:facet>
+							<h:outputText value="#{a.nomclient}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nom d'article </f:facet>
+							<h:outputText value="#{a.article.getNomArt()}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Quantite</f:facet>
+							<h:outputText value="#{a.quantite}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Montant</f:facet>
+							<h:outputText value="#{(a.prix) * (a.quantite)} DH"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Date de Commande</f:facet>
+							<h:outputText value="#{a.date}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Actions</f:facet>
+							<center>
+								<h:commandLink id="edit" class="fa fa-fw fa-pencil"
+									style="font-size:30px;"
+									actionListener="#{commandeFacade.selected(a)}">
+									<f:ajax render=":formid" />
+									<f:passThroughAttribute name="data-toggle" value="modal" />
+									<f:passThroughAttribute name="data-target" value="#myModal1" />
+								</h:commandLink>
+								<h:outputText value="&#160;&#160;&#160;" />
+
+								<h:commandLink style="font-size:30px;color:red;"
+									onclick="return confirm('Voulez-vous vraiment supprimer cet Commande?');"
+									class="fa fa-fw fa-trash"
+									action="#{commandeFacade.deleteCommande(a)}">
+									<f:ajax render=":formTable" />
+								</h:commandLink>
+								<h:outputText value="&#160;&#160;&#160;" />
+								<h:commandLink style="font-size:30px;color:red;" class="fa fa-file-pdf-o" id="pdf" 
+								actionListener="#{commandeFacade.print(a)}"	
+								action="print.xhtml"						
+															
+								/>			
+								
+								
+							</center>
+						</h:column>
+
+					</h:dataTable>
+					<!-- start	Script search dataTable -->
+
+
+
+				</h:panelGroup>
+
+			</h:panelGroup>
+
+		</h:panelGroup>
+	</h:form>
+	<!-- Modal ajouter-->
+	<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<h:panelGroup layout="block" class="container">
+			<h:panelGroup layout="block" class="card card-register mx-auto mt-5">
+				<h:panelGroup layout="block" class="card-header">Ajouter Nouvelle Commande</h:panelGroup>
+
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<h:panelGroup layout="block" class="card-body">
+							<h:form>
+
+								<h:panelGroup layout="block" class="form-group">
+									<h:panelGroup layout="block" class="form-row">
+
+										<h:panelGroup layout="block" class="col-md-6">
+											<h:outputLabel for="exampleInputLastName">Nom Client</h:outputLabel>
+											<h:inputText class="form-control" id="exampleInputLastName"
+												value="#{commandeFacade.nom_client}"
+												aria-describedby="nameHelp" pt:placeholder="Nom Client" />
+										</h:panelGroup>
+
+
+
+										<h:panelGroup layout="block" class="col-md-6">
+											<h:outputLabel for="sel">Nom Article</h:outputLabel>
+											<h:selectOneMenu id="sel" class="form-control"
+												value="#{commandeFacade.cod}">
+												<f:selectItems value="#{articleFacade.countryOptionsMap}" />
+											</h:selectOneMenu>
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+
+
+
+								<h:panelGroup layout="block" class="form-group">
+									<h:outputLabel for="exampleInputEmail1">Quantite</h:outputLabel>
+									<h:inputText class="form-control" id="exampleInputEmail1"
+										value="#{commandeFacade.qt}" aria-describedby="emailHelp"
+										pt:placeholder="Quantite" />
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="form-group">
+									<h:panelGroup layout="block" class="form-row">
+										<h:panelGroup layout="block" class="col-md-6">
+											<h:outputLabel for="exampleInputPassword1">Prix par unite</h:outputLabel>
+											<h:inputText class="form-control" id="exampleInputPassword1"
+												value="#{commandeFacade.prix}" pt:placeholder="Prix" />
+										</h:panelGroup>
+										<h:panelGroup layout="block" class="col-md-6">
+											<h:outputLabel for="exampleConfirmPassword">Date</h:outputLabel>
+
+											<p:calendar id="german" value="#{commandeFacade.date}"
+												locale="de" navigator="true" pattern="yyyy-MM-dd" />
+
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:commandButton class="btn btn-primary btn-block"
+									value="Ajouter" action="#{commandeFacade.add}" />
+
+
+								<button type="button" class="btn btn-danger btn-block"
+									data-dismiss="modal">Fermer</button>
+							</h:form>
+						</h:panelGroup>
+					</div>
+				</div>
+			</h:panelGroup>
+		</h:panelGroup>
+
+	</div>
+
+	<!-- Modal Modifier-->
+
+
+	<h:panelGroup layout="block" class="modal fade" id="myModal1"
+		tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+		<h:panelGroup layout="block" class="container">
+
+			<h:panelGroup layout="block" class="card card-register mx-auto mt-5">
+
+				<h:panelGroup layout="block" class="card-header">Modifier Article</h:panelGroup>
+
+				<h:panelGroup layout="block" class="modal-dialog" role="document">
+
+					<h:panelGroup layout="block" class="modal-content">
+
+						<h:panelGroup layout="block" class="card-body">
+
+							<h:form id="formid">
+
+								<h:panelGroup layout="block" class="form-group">
+									<h:panelGroup layout="block" class="form-row">
+										<h:panelGroup layout="block" class="col-md-6">
+
+											<h:outputLabel for="sele">Nom Article</h:outputLabel>
+
+											<!-- <h:inputText class="form-control" id="idtest" value="#{commandeFacade.selectedCommande.codecmd}" aria-describedby="nameHelp" pt:readonly="readonly" -->
+											<!-- 											/> -->
+											<h:selectOneMenu class="form-control" id="sele"
+												value="#{commandeFacade.cod}">
+												<f:selectItem
+													itemLabel="#{commandeFacade.selectedCommande.article.getNomArt()}"
+													itemValue="" />
+												<f:selectItems value="#{articleFacade.countryOptionsMap}" />
+											</h:selectOneMenu>
+										</h:panelGroup>
+										<h:panelGroup layout="block" class="col-md-6">
+											<h:outputLabel for="exampleInputLastName">Nom Client</h:outputLabel>
+											<h:inputText class="form-control" id="exampleInputLastName"
+												value="#{commandeFacade.selectedCommande.nomclient}"
+												aria-describedby="nameHelp" pt:placeholder="Nom Client"
+												reqiured="true" />
+
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" class="form-group">
+									<h:panelGroup layout="block" class="form-row">
+										<h:panelGroup layout="block" class="col-md-6">
+											<h:outputLabel for="exampleInputPassword1">Quantite</h:outputLabel>
+											<h:inputText class="form-control" id="exampleInputPassword1"
+												type="number" pt:placeholder="Quantite"
+												value="#{commandeFacade.selectedCommande.quantite}" />
+										</h:panelGroup>
+										<h:panelGroup layout="block" class="col-md-6">
+											<h:outputLabel for="exampleConfirmPassword">Date</h:outputLabel>
+											<p:calendar id="german1"
+												value="#{commandeFacade.selectedCommande.date}" locale="de"
+												navigator="true" pattern="yyyy-MM-dd" pt:readonly="readonly" />
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:inputHidden
+									value="#{commandeFacade.selectedCommande.codecmd}"></h:inputHidden>
+
+								<h:commandButton class="btn btn-primary btn-block"
+									value="Enregestrer Modification"
+									action="#{commandeFacade.update(commandeFacade.selectedCommande.codecmd,commandeFacade.selectedCommande.nomclient,commandeFacade.selectedCommande.quantite,commandeFacade.selectedCommande.date,commandeFacade.cod)}" />
+
+
+								<button type="button" class="btn btn-danger btn-block"
+									data-dismiss="modal">Fermer</button>
+
+							</h:form>
+
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+
+			</h:panelGroup>
+
+		</h:panelGroup>
+
+	</h:panelGroup>
+
+</ui:composition>

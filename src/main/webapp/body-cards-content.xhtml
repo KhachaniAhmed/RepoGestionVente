@@ -1,0 +1,78 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:panelGroup layout="block" class="row">
+		<h:panelGroup layout="block" class="col-xl-3 col-sm-6 mb-3">
+			<h:panelGroup layout="block"
+				class="card text-white bg-primary o-hidden h-100">
+				<h:panelGroup layout="block" class="card-body">
+					<h:panelGroup layout="block" class="card-body-icon">
+						<i class="fa fa-fw fa-shopping-cart"></i>
+					</h:panelGroup>
+					<h:panelGroup class="mr-5">plus de <h:outputLabel value=" #{articleFacade.countCommande()}"></h:outputLabel> commandes</h:panelGroup>
+				</h:panelGroup>
+				<a class="card-footer text-white clearfix small z-1" href="#"> <h:panelGroup
+						class="float-left">View Details</h:panelGroup> <h:panelGroup
+						class="float-right">
+						<i class="fa fa-angle-right"></i>
+					</h:panelGroup>
+				</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="col-xl-3 col-sm-6 mb-3">
+			<h:panelGroup layout="block"
+				class="card text-white bg-warning o-hidden h-100">
+				<h:panelGroup layout="block" class="card-body">
+					<h:panelGroup layout="block" class="card-body-icon">
+						<i class="fa fa-fw fa-list"></i>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="mr-5">plus de <h:outputLabel value=" #{articleFacade.countArticle()}"></h:outputLabel> Articles</h:panelGroup>
+				</h:panelGroup>
+				<a class="card-footer text-white clearfix small z-1" href="#"> <h:panelGroup
+						class="float-left">View Details</h:panelGroup> <h:panelGroup
+						class="float-right">
+						<i class="fa fa-angle-right"></i>
+					</h:panelGroup>
+				</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="col-xl-3 col-sm-6 mb-3">
+			<h:panelGroup layout="block"
+				class="card text-white bg-success o-hidden h-100">
+				<h:panelGroup layout="block" class="card-body">
+					<h:panelGroup layout="block" class="card-body-icon">
+						<i class="fa fa-fw fa-money"></i>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="mr-5">Max Prix : <h:outputLabel value=" #{articleFacade.maxPrix()}"></h:outputLabel> DH</h:panelGroup>
+				</h:panelGroup>
+				<a class="card-footer text-white clearfix small z-1" href="#"> <h:panelGroup
+						class="float-left">View Details</h:panelGroup> <h:panelGroup
+						class="float-right">
+						<i class="fa fa-angle-right"></i>
+					</h:panelGroup>
+				</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="col-xl-3 col-sm-6 mb-3">
+			<h:panelGroup layout="block"
+				class="card text-white bg-danger o-hidden h-100">
+				<h:panelGroup layout="block" class="card-body">
+					<h:panelGroup layout="block" class="card-body-icon">
+						<i class="fa fa-fw fa-support"></i>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="mr-5">Min Prix : <h:outputLabel value=" #{articleFacade.minPrix()}"></h:outputLabel> DH</h:panelGroup>
+				</h:panelGroup>
+				<a class="card-footer text-white clearfix small z-1" href="#"> <h:panelGroup
+						class="float-left">View Details</h:panelGroup> <h:panelGroup
+						class="float-right">
+						<i class="fa fa-angle-right"></i>
+					</h:panelGroup>
+				</a>
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+</ui:composition>

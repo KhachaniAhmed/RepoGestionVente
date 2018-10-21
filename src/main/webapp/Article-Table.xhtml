@@ -1,0 +1,142 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:b="http://bootsfaces.net/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+ xmlns:p="http://primefaces.org/ui">
+
+<h:form id="formTable">
+
+
+	<h:panelGroup layout="block" class="card mb-3">
+		<h:panelGroup layout="block" class="card-header">
+			<i class="fa fa-table"></i> List des Articles
+		</h:panelGroup>
+
+
+
+		<h:panelGroup layout="block" class="card-body">
+
+			<h:panelGroup layout="block" class="table-responsive">
+
+
+				<h:dataTable var="a" value="#{articleFacade.getAllArticles()}" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+					<h:column>
+						<f:facet name="header">Code d'article</f:facet>
+
+						<h:outputText value="#{a.code_Art}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nom </f:facet>
+						<h:outputText value="#{a.nomArt}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">description</f:facet>
+						<h:outputText value="#{a.descArt}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">prix</f:facet>
+						<h:outputText value="#{a.prixArt} DH"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Quantite</f:facet>
+						<h:outputText value="#{a.quantite}"></h:outputText>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Actions</f:facet>
+<center>
+						<h:commandLink  id="edit" class="fa fa-fw fa-pencil" style="font-size:30px;" actionListener="#{articleFacade.selected(a)}" >
+						<f:ajax render=":formid"/>
+						<f:passThroughAttribute name="data-toggle" value="modal" />
+                        <f:passThroughAttribute name="data-target" value="#myModal1" />
+						</h:commandLink>
+							<h:outputText value="&#160;&#160;&#160;" />
+						
+					<h:commandLink  style="font-size:30px;color:red;" onclick="return confirm('Voulez-vous vraiment supprimer cet article?');"  class="fa fa-fw fa-trash"  action="#{articleFacade.deleteArticle(a)}">
+					<f:ajax render=":formTable"/>
+					</h:commandLink>
+					</center>
+					</h:column>
+					
+					
+				</h:dataTable>
+<!-- start	Script search dataTable -->
+
+
+				
+			</h:panelGroup>
+			
+		</h:panelGroup>
+
+	</h:panelGroup>
+</h:form>
+	<!-- Modal -->
+
+
+	<h:panelGroup layout="block" class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+		<h:panelGroup layout="block" class="container">
+
+			<h:panelGroup layout="block" class="card card-register mx-auto mt-5">
+
+				<h:panelGroup layout="block" class="card-header">Modifier Article</h:panelGroup>
+
+				<h:panelGroup layout="block" class="modal-dialog" role="document">
+
+					<h:panelGroup layout="block" class="modal-content">
+
+						<h:panelGroup layout="block" class="card-body">
+
+							<h:form id="formid">
+
+								<h:panelGroup layout="block" class="form-group">
+									<h:panelGroup layout="block" class="form-row">
+										
+										<h:panelGroup layout="block" class="col-md-6">
+											<h:outputLabel for="exampleInputLastName">Nom d'article</h:outputLabel>
+											<h:inputText class="form-control" id="exampleInputLastName" value="#{articleFacade.selectedArticlee.nomArt}" aria-describedby="nameHelp"
+											 pt:placeholder="Nom d'article" reqiured="true" />
+
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="form-group">
+									<h:outputLabel for="exampleInputEmail1">Description</h:outputLabel>
+
+									<h:inputText class="form-control" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" pt:placeholder="Description"
+									 value="#{articleFacade.selectedArticlee.descArt}"/>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="form-group">
+									<h:panelGroup layout="block" class="form-row">
+										<h:panelGroup layout="block" class="col-md-6">
+											<h:outputLabel for="exampleInputPassword1">Prix</h:outputLabel>
+											<h:inputText class="form-control" id="exampleInputPassword1" type="number" pt:placeholder="Prix"  value="#{articleFacade.selectedArticlee.prixArt}"/>
+										</h:panelGroup>
+										<h:panelGroup layout="block" class="col-md-6">
+											<h:outputLabel for="exampleConfirmPassword">Quantite</h:outputLabel>
+											<h:inputText class="form-control" id="exampleConfirmPassword" type="number" pt:placeholder="Quantite"  value="#{articleFacade.selectedArticlee.quantite}"/>
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:commandButton class="btn btn-primary btn-block" value="Enregestrer Modification" action="#{articleFacade.update(articleFacade.selectedArticlee.code_Art,articleFacade.selectedArticlee.nomArt,articleFacade.selectedArticlee.descArt,articleFacade.selectedArticlee.prixArt,articleFacade.selectedArticlee.quantite)}" />
+
+
+								<button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Fermer</button>
+
+							</h:form>
+
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+
+			</h:panelGroup>
+
+		</h:panelGroup>
+
+	</h:panelGroup>
+
+
+</ui:composition>

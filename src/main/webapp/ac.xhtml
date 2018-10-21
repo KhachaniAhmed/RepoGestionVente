@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:hf="http://highfaces.org"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Gestion de Vente</title>
+	<meta name="author" content="Riccardo Massera"></meta>
+
+</h:head>
+<h:body style="padding-top: 60px">
+	<h:outputScript library="holder" name="holder.js" />
+	<!--script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.5.2/holder.min.js"></script-->
+	<b:navBar brand="Gestion de Vente" brandHref="#" inverse="true"
+		fixed="top" fluid="true">
+	</b:navBar>
+
+
+	<b:container fluid="true">
+	
+		<b:row>
+			<b:column col-sm="3" col-md="2" styleClass="sidebar">
+
+
+				<b:listLinks>
+					<b:navLink href="#" value="Home" />
+					<b:navLink href="#" value="List of Article" />
+					<b:navLink href="#" value="Commande" />
+					<b:navLink href="#" value="Statistique" />
+					<b:navLink href="#" value="Client" />
+				</b:listLinks>
+
+			</b:column>
+		</b:row>
+	</b:container>
+	<center>
+		<p:chart type="line" model="#{chartView.lineModel1}"
+			style="width:850px;" />
+
+	</center>
+	
+
+
+	<style type="text/css">
+@media ( min-width : 768px) {
+	.sidebar {
+		background-color: #033c73;
+		border-right: 1px solid #eee;
+		bottom: 0;
+		display: block;
+		left: 0;
+		overflow-x: hidden;
+		overflow-y: auto;
+		padding: 20px;
+		position: fixed;
+		top: 51px;
+		z-index: 1000;
+	}
+}
+</style>
+</h:body>
+</html>

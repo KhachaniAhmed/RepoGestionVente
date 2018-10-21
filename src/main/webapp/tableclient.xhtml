@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<h:head>
+	<style>
+.cmd {
+	margin-top: 20px;
+}
+
+.form-group {
+	margin-top: -10px;
+}
+</style>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+	<title>Ajouter</title>
+	<!-- Bootstrap core CSS-->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+	<!-- Custom fonts for this template-->
+	<link href="vendor/font-awesome/css/font-awesome.min.css"
+		rel="stylesheet" type="text/css"></link>
+	<!-- Custom styles for this template-->
+	<link href="css/sb-admin.css" rel="stylesheet"></link>
+	
+</h:head>
+
+
+
+
+<h:body class="fixed-nav sticky-footer bg-dark" id="page-top">
+	<!-- start Navigation-->
+	<ui:include src="/top-left-menu.xhtml" />
+	<!-- End Navigation-->
+
+	<div class="justif">
+		<div class="card mb-3"
+			style="margin-top: -35%; margin-left: 252px;margin-right: 2px;border-left: solid;border-left-color:orange ;">
+			<div class="card-header">
+				<i class="fa fa-table"></i>Table des données clients
+			</div>
+			<button type="button"
+				style="margin-top: 10px; width: 30%; margin-left: 700px;"
+				class="btn btn-success btn-lg" data-toggle="modal"
+				data-target="#client">Ajouter client</button>
+
+
+
+			<!-- Modal -->
+			<div class="modal fade" id="client" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content" style="border-right: solid; border-right-color: green;
+		margin-left: 19%;border-radius: 20px;border-top: solid;border-top-color: orange;border-left: solid;border-left-color:fuchsia ;
+		border-bottom: solid;border-bottom-color: gray;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true"></span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Nouveau client</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<h:outputLabel styleClass="lab">Code</h:outputLabel>
+								<h:inputText styleClass="form-control" value="" id="code"></h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel styleClass="lab">C-I-N</h:outputLabel>
+								<h:inputText styleClass="form-control" value="" id="CIN"></h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel styleClass="lab">Nomclient</h:outputLabel>
+								<h:inputText styleClass="form-control" value="" id="code"></h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel styleClass="lab">Ville</h:outputLabel>
+								<h:inputText styleClass="form-control" value="" id="ville"></h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel styleClass="lab">Adresse</h:outputLabel>
+								<h:inputText styleClass="form-control" value="" id="adresse"></h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel styleClass="lab">Code postale</h:outputLabel>
+								<h:inputText styleClass="form-control" value="" id="postal"></h:inputText>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Oublier!</button>
+							<div class="btn1">
+								<button type="button" class="btn btn-success">Enregestrer
+									ce client !</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="90%"
+						cellspacing="0">
+						<thead>
+							<tr>
+								<th>Nom</th>
+								<th>Adresse</th>
+								<th>Ville</th>
+								<th>Code postal</th>
+								<th>CIN</th>
+
+
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>Nom</th>
+								<th>Adresse</th>
+								<th>Ville</th>
+								<th>Code postal</th>
+								<th>CIN</th>
+							</tr>
+						</tfoot>
+						<tbody>
+
+
+							<tr>
+								<td>AL AGAD Hicham</td>
+								<td>Mabrouka5 Rue 20</td>
+								<td>Tanger</td>
+								<td>90000</td>
+								<td>KB127069</td>
+							</tr>
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="card-footer small text-muted">AZUSTEK
+				</div>
+		</div>
+	</div>
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin.min.js"></script>
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Page level plugin JavaScript-->
+	<script src="vendor/datatables/jquery.dataTables.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin.min.js"></script>
+	<!-- Custom scripts for this page-->
+	<script src="js/sb-admin-datatables.min.js"></script>
+</h:body>
+</html>

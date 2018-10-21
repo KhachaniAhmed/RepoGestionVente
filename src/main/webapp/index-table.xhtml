@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:b="http://bootsfaces.net/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+ xmlns:p="http://primefaces.org/ui">
+
+	<h:panelGroup layout="block" class="card mb-3">
+		<h:panelGroup layout="block" class="card-header">
+			<i class="fa fa-table"></i> List des Articles </h:panelGroup>
+			<h:panelGroup id="example"></h:panelGroup>
+		<h:panelGroup layout="block" class="card-body">
+			<h:panelGroup layout="block" class="table-responsive">
+			
+				<h:dataTable var="a" value="#{articleFacade.getAllArticles()}" class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+				paginatorTemplate="{Exporters}">
+					<h:column>
+						<f:facet name="header">Code d'article</f:facet>
+						<h:outputText value="#{a.code_Art}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nom </f:facet>
+						<h:outputText value="#{a.nomArt}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">description</f:facet>
+						<h:outputText value="#{a.descArt}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">prix</f:facet>
+						<h:outputText value="#{a.prixArt} DH"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Quantite</f:facet>
+						<h:outputText value="#{a.quantite}"></h:outputText>
+					</h:column>					
+				</h:dataTable>
+				
+				
+				
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+</ui:composition>
